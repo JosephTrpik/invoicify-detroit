@@ -24,3 +24,15 @@ hs_err_pid*
 
 node_modules
 *.properties
+
+*.classpath
+*.project
+*.settings/org.eclipse.core.resources.prefs
+*.settings/org.eclipse.jdt.apt.core.prefs
+*.settings/org.eclipse.jdt.core.prefs
+*.settings/org.eclipse.m2e.core.prefs
+target/classes/aslkjf.yml
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
