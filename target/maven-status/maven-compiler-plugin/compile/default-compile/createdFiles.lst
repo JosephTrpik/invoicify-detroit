@@ -1,5 +1,6 @@
 com\ally\invoicify\InvoicifyApplication.class
 com\ally\invoicify\services\AppUserDetailsService.class
+com\ally\invoicify\models\NewPayment.class
 com\ally\invoicify\repositories\InvoiceLineItemRepository.class
 com\ally\invoicify\models\InvoiceLineItem.class
 com\ally\invoicify\controllers\RateBasedBillingRecordController.class
