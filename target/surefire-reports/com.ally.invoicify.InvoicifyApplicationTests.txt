@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.ally.invoicify.InvoicifyApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.123 sec - in com.ally.invoicify.InvoicifyApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.538 sec - in com.ally.invoicify.InvoicifyApplicationTests

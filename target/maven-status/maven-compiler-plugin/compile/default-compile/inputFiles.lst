@@ -18,6 +18,7 @@ D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\mod
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\controllers\RateBasedBillingRecordController.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\InvoicifyApplication.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\Invoice.java
+D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\NewPayment.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\repositories\InvoiceRepository.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\User.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\controllers\SessionController.java
