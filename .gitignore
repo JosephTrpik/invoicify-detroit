@@ -23,11 +23,11 @@
 hs_err_pid*
 
 
-src/main/resources/application.properties
+# src/main/resources/application.properties
 
 
 node_modules
-*.properties
+# *.properties
 
 target
 
