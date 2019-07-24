@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public abstract class NewPayment {
+public class NewPayment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
