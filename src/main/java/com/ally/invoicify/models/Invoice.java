@@ -28,6 +28,7 @@ public class Invoice {
 	@ManyToOne
 	private User createdBy;
 	
+	
 	private String invoiceDescription;
 	
 	@JsonManagedReference(value="secondParent")

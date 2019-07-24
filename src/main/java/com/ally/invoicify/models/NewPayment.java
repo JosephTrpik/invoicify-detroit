@@ -18,19 +18,15 @@ public class NewPayment {
 	private String method;
 
 	@ManyToOne
-	private Company company;
-
-	@ManyToOne
 	private Invoice invoice;
 
 	public NewPayment() {
 	}
 
-	public NewPayment(Long amount, String method, Company company, Invoice invoice) {
+	public NewPayment(Long amount, String method, Invoice invoice) {
 		this();
 		this.amount = amount;
 		this.method = method;
-		this.company = company;
 		this.invoice = invoice;
 	}
 
@@ -55,14 +51,6 @@ public class NewPayment {
 
 	public void setMethod(String method) {
 		this.method = method;
-	}
-
-	public Company getCompany() {
-		return this.company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
 	}
 
 	public Invoice getInvoice() {
