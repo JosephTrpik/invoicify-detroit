@@ -39,22 +39,18 @@ public class NewPaymentController {
 	}
 	
 	@PostMapping("{invoiceId}")
-	public NewPayment create(@RequestBody NewPayment newPayment,  @PathVariable Long invoiceId){
+	public void create(@RequestBody NewPayment newPayment,  @PathVariable Long invoiceId){
 		Invoice invoice = invoiceRepo.getOne(invoiceId);
 
 		// // invoice.setBalance(invoice.getBalance()- newPayment.getAmount());
-		// newPayment.setInvoice(invoice);
+		newPayment.setInvoice(invoice);
 
 
 
 
 
-		// NewPayment test = newPaymentRepo.save(newPayment);
+		newPaymentRepo.save(newPayment);
 
-		NewPayment payment = new NewPayment(new Long(100),"credit",invoice);
-
-
-		return null;
 	}
 
 
