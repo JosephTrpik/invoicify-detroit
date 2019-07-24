@@ -62,7 +62,10 @@ public class InvoiceController {
 		
 		return invoiceRepository.save(invoice);
 	}
-	
+	@GetMapping("/company/{companyId}")
+	public List<Invoice> list(@PathVariable long companyId) {
+		return invoiceRepository.findAllByCompanyId(companyId);
+	}	
 
 	@GetMapping
 	public List<Invoice> list() {
