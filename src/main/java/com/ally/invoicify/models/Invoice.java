@@ -29,6 +29,10 @@ public class Invoice {
 	private User createdBy;
 	
 	private String invoiceDescription;
+
+	private Date paidOn;
+
+	private double balance;
 	
 	@JsonManagedReference(value="secondParent")
 	@OneToMany(mappedBy="invoice", cascade=CascadeType.ALL)
@@ -80,6 +84,22 @@ public class Invoice {
 
 	public void setLineItems(List<InvoiceLineItem> lineItems) {
 		this.lineItems = lineItems;
+	}
+
+	public Date getPaidOn() {
+		return paidOn;
+	}
+
+	public void setPaidOn(Date paidOn) {
+		this.paidOn = paidOn;
+	} 
+
+	public double getBalance(){
+		return balance;
+	}
+
+	public void setBalance(double balance){
+		this.balance = balance;
 	}
 	
 }
