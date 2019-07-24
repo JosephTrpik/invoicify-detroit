@@ -27,7 +27,7 @@ node_modules
 
 target
 
-.vscode
+.vscode/launch.json
 
 .classpath
 .project
