@@ -11,6 +11,7 @@ D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\rep
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\RateBasedBillingRecord.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\repositories\UserRepository.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\BillingRecord.java
+D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\controllers\NewPaymentController.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\Company.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\configuration\SeedData.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\controllers\UserController.java
@@ -18,6 +19,7 @@ D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\mod
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\controllers\RateBasedBillingRecordController.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\InvoicifyApplication.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\Invoice.java
+D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\repositories\NewPaymentRepository.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\NewPayment.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\repositories\InvoiceRepository.java
 D:\Users\ZZ32CW\Documents\invoicify-detroit\src\main\java\com\ally\invoicify\models\User.java
