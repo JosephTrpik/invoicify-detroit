@@ -27,6 +27,8 @@ node_modules
 
 target
 
+.vscode
+
 .classpath
 .project
 .settings/org.eclipse.jdt.apt.core.prefs
