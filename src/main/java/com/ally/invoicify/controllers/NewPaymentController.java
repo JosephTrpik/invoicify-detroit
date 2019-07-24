@@ -34,18 +34,27 @@ public class NewPaymentController {
 	}
 	
 	@GetMapping("{id}")
-	public NewPayment getOne(@PathVariable long id){
+	public NewPayment getOne(@PathVariable Long id){
 		return newPaymentRepo.findOne(id);
 	}
 	
 	@PostMapping("{invoiceId}")
-	public NewPayment create(@RequestBody NewPayment newPayment,  @PathVariable long invoiceId){
+	public NewPayment create(@RequestBody NewPayment newPayment,  @PathVariable Long invoiceId){
 		Invoice invoice = invoiceRepo.getOne(invoiceId);
 
-		// invoice.setBalance(invoice.getBalance()- newPayment.getAmount());
-		newPayment.setInvoice(invoice);
+		// // invoice.setBalance(invoice.getBalance()- newPayment.getAmount());
+		// newPayment.setInvoice(invoice);
 
-		return newPaymentRepo.save(newPayment);
+
+
+
+
+		// NewPayment test = newPaymentRepo.save(newPayment);
+
+		NewPayment payment = new NewPayment(new Long(100),"credit",invoice);
+
+
+		return null;
 	}
 
 
