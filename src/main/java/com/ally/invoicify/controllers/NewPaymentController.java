@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.models.auth.In;
+
+import com.ally.invoicify.models.Invoice;
 import com.ally.invoicify.models.NewPayment;
 import com.ally.invoicify.repositories.NewPaymentRepository;
+import com.ally.invoicify.repositories.InvoiceRepository;;
 
 @RestController
 @RequestMapping("/api/new-payment")
@@ -21,6 +25,8 @@ public class NewPaymentController {
 	
 	@Autowired
 	NewPaymentRepository newPaymentRepo;
+	@Autowired
+	InvoiceRepository invoiceRepo;
 	
 	@GetMapping
 	public List<NewPayment> getAll(){
@@ -32,22 +38,16 @@ public class NewPaymentController {
 		return newPaymentRepo.findOne(id);
 	}
 	
-	@PostMapping
-	public NewPayment create(@RequestBody NewPayment newPayment){
+	@PostMapping("{invoiceId}")
+	public NewPayment create(@RequestBody NewPayment newPayment,  @PathVariable long invoiceId){
+		Invoice invoice = invoiceRepo.getOne(invoiceId);
+
+		// invoice.setBalance(invoice.getBalance()- newPayment.getAmount());
+		newPayment.setInvoice(invoice);
+
 		return newPaymentRepo.save(newPayment);
 	}
-	
-	@PutMapping("{id}")
-	public NewPayment update(@RequestBody NewPayment newPayment, @PathVariable long id){
-		newPayment.setId(id);
-		return newPaymentRepo.save(newPayment);
-	}
-	
-	@DeleteMapping("{id}")
-	public NewPayment update(@PathVariable long id){
-		NewPayment original = newPaymentRepo.findOne(id);
-		newPaymentRepo.delete(original);
-		return original;
-	}
+
+
 	
 }
