@@ -25,6 +25,8 @@ hs_err_pid*
 node_modules
 *.properties
 
+target
+
 .classpath
 .project
 .settings/org.eclipse.jdt.apt.core.prefs
