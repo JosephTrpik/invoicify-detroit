@@ -5,8 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.springframework.context.annotation.Bean;
 
 @Entity
+// @Bean
 public class NewPayment {
 
 	@Id
