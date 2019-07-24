@@ -64,7 +64,8 @@ public class InvoiceController {
 	}
 	@GetMapping("/company/{companyId}")
 	public List<Invoice> list(@PathVariable long companyId) {
-		return invoiceRepository.findAllByCompanyId(companyId);
+		System.out.println("COMPANY ID -->"+companyId);
+		return invoiceRepository.findByCompanyId(companyId);
 	}	
 
 	@GetMapping
