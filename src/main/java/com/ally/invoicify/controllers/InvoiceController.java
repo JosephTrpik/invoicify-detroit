@@ -48,6 +48,7 @@ public class InvoiceController {
 		Date now = new Date(nowish);
 		Invoice invoice = new Invoice();
 		invoice.setInvoiceDescription(invoiceView.getInvoiceDescription());
+		double total = 0;
 		
 		List<InvoiceLineItem> items = new ArrayList<InvoiceLineItem>();
 		for (BillingRecord record : records) {
@@ -57,12 +58,15 @@ public class InvoiceController {
 			lineItem.setCreatedOn(now);
 			lineItem.setInvoice(invoice);
 			items.add(lineItem);
+			total += record.getTotal();
 		}
 		
 		invoice.setLineItems(items);
 		invoice.setCreatedBy(creator);
 		invoice.setCreatedOn(now);
 		invoice.setCompany(companyRepository.findOne(clientId));
+		invoice.setPaidOn(null);
+		invoice.setBalance(total);
 		
 		return invoiceRepository.save(invoice);
 	}
@@ -72,7 +76,6 @@ public class InvoiceController {
 
 		Invoice alreadyExistingInvoice = invoiceRepository.findOne(invoiceId);
 		Invoice newInvoice = new Invoice();
-
 		long nowish = Calendar.getInstance().getTimeInMillis();
 		Date now = new Date(nowish);
 		
@@ -100,6 +103,17 @@ public class InvoiceController {
 	public List<Invoice> list() {
 		return invoiceRepository.findAll();
 	}
+  
+  @GetMapping("{id}")
+	public Invoice getOne(@PathVariable Long id) {
+		return invoiceRepository.findOne(id);
+	}
+  
+  @GetMapping("/company/{companyId}")
+	public List<Invoice> list(@PathVariable long companyId) {
+		System.out.println("COMPANY ID -->"+companyId);
+		return invoiceRepository.findByCompanyId(companyId);
+	}	
 
 	private void createDuplicateLineItem(List<InvoiceLineItem> lineItemRepo, long newInvoiceId, long existingInvoiceId, Date now){
 		for(InvoiceLineItem lineItem : lineItemRepo){
@@ -113,5 +127,4 @@ public class InvoiceController {
 			}
 		}
 	}
-	
 }

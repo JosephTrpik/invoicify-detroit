@@ -8,9 +8,13 @@ import com.ally.invoicify.models.Company;
 import com.ally.invoicify.models.FlatFeeBillingRecord;
 import com.ally.invoicify.models.RateBasedBillingRecord;
 import com.ally.invoicify.models.User;
+
 import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 import com.ally.invoicify.repositories.UserRepository;
+
+
+import org.springframework.security.core.Authentication;
 
 @Configuration
 public class SeedData {
@@ -33,6 +37,8 @@ public class SeedData {
 		recordRepository.save(new RateBasedBillingRecord(100, 4.25, "House cleaning", ajax, admin));
 		recordRepository.save(new RateBasedBillingRecord(700, 8, "Palm reading", lomax, admin));
 		recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
+
+
 	}
 
 }
