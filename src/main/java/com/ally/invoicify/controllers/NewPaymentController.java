@@ -1,18 +1,17 @@
 package com.ally.invoicify.controllers;
 
 import java.util.List;
+import java.sql.Date;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.models.auth.In;
 
 import com.ally.invoicify.models.Invoice;
 import com.ally.invoicify.models.NewPayment;
@@ -40,19 +39,17 @@ public class NewPaymentController {
 	
 	@PostMapping("{invoiceId}")
 	public void create(@RequestBody NewPayment newPayment,  @PathVariable Long invoiceId){
+		long nowish = Calendar.getInstance().getTimeInMillis();
+        Date now = new Date(nowish);
 		Invoice invoice = invoiceRepo.getOne(invoiceId);
 
-		// // invoice.setBalance(invoice.getBalance()- newPayment.getAmount());
+		invoice.setBalance(invoice.getBalance()- newPayment.getAmount());
+		if(invoice.getBalance() == 0) {
+			invoice.setPaidOn(now);
+		}
+
 		newPayment.setInvoice(invoice);
 
-
-
-
-
 		newPaymentRepo.save(newPayment);
-
-	}
-
-
-	
+	}	
 }

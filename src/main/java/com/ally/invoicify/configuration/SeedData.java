@@ -1,7 +1,6 @@
 package com.ally.invoicify.configuration;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ally.invoicify.models.Company;
@@ -12,9 +11,6 @@ import com.ally.invoicify.models.User;
 import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 import com.ally.invoicify.repositories.UserRepository;
-
-
-import org.springframework.security.core.Authentication;
 
 @Configuration
 public class SeedData {
