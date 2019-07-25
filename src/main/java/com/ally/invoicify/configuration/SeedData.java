@@ -8,14 +8,11 @@ import com.ally.invoicify.models.Company;
 import com.ally.invoicify.models.FlatFeeBillingRecord;
 import com.ally.invoicify.models.RateBasedBillingRecord;
 import com.ally.invoicify.models.User;
-import com.ally.invoicify.models.Invoice;
-import com.ally.invoicify.models.NewPayment;
-import com.ally.invoicify.models.InvoiceView;
+
 import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 import com.ally.invoicify.repositories.UserRepository;
-import com.ally.invoicify.repositories.InvoiceRepository;
-import com.ally.invoicify.repositories.NewPaymentRepository;
+
 
 import org.springframework.security.core.Authentication;
 
@@ -23,8 +20,7 @@ import org.springframework.security.core.Authentication;
 public class SeedData {
 
 	public SeedData(BillingRecordRepository recordRepository, CompanyRepository companyRepository,
-			UserRepository userRepository, InvoiceRepository invoiceRepository, NewPaymentRepository newPaymentRepository,
-			 PasswordEncoder encoder) {
+			UserRepository userRepository, PasswordEncoder encoder) {
 		User admin = userRepository.save(new User("admin", encoder.encode("admin")));
 
 		Company ajax = companyRepository.save(new Company("AJAX Ltd."));
@@ -41,18 +37,6 @@ public class SeedData {
 		recordRepository.save(new RateBasedBillingRecord(100, 4.25, "House cleaning", ajax, admin));
 		recordRepository.save(new RateBasedBillingRecord(700, 8, "Palm reading", lomax, admin));
 		recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
-
-		long[] longs = new long[]{1};
-
-
-		InvoiceView view = new InvoiceView("car", longs);
-
-
-
-		Invoice invoice = invoiceRepository.save(new Invoice());
-		
-		newPaymentRepository.save(new NewPayment(new Long(100),"credit",invoice));
-
 
 	}
 
