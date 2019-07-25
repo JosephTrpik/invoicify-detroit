@@ -42,16 +42,16 @@ public class SeedData {
 		recordRepository.save(new RateBasedBillingRecord(700, 8, "Palm reading", lomax, admin));
 		recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
 
-		long[] longs = new long[]{1};
+		// long[] longs = new long[]{1};
 
 
-		InvoiceView view = new InvoiceView("car", longs);
+		// InvoiceView view = new InvoiceView("car", longs);
 
 
 
-		Invoice invoice = invoiceRepository.save(new Invoice());
+		// Invoice invoice = invoiceRepository.save(new Invoice());
 		
-		newPaymentRepository.save(new NewPayment(new Long(100),"credit",invoice));
+		// newPaymentRepository.save(new NewPayment(new Long(100),"credit",invoice));
 
 
 	}
