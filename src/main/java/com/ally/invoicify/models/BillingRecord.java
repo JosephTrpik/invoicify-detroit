@@ -1,16 +1,12 @@
 package com.ally.invoicify.models;
 
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.*;
@@ -21,7 +17,6 @@ import com.ally.invoicify.models.InvoiceLineItem;
 public abstract class BillingRecord {
 
 	@Id
-	//@Column(name = "br_id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
@@ -29,16 +24,10 @@ public abstract class BillingRecord {
 	private User createdBy;
 	
 	private String description;
-	
-	// @JsonManagedReference
-	// @OneToMany(mappedBy="billingRecord")
-	// @OneToOne
-	// private InvoiceLineItem lineItem;
 
 	@JsonManagedReference(value="thirdParent")
 	@OneToMany(mappedBy="billingRecord", cascade=CascadeType.ALL)
 	private List<InvoiceLineItem> lineItems;
-	
 	
 	@ManyToOne
 	private Company client;
