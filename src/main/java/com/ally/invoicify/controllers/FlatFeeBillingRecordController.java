@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,6 +35,12 @@ public class FlatFeeBillingRecordController {
 		recordRepository.save(record);
 
 		return recordRepository.save(record);
+	}
+
+	@PutMapping("{id}")
+	public FlatFeeBillingRecord update(@RequestBody FlatFeeBillingRecord flatFeeBillingRecord, @PathVariable long id){
+		flatFeeBillingRecord.setId(id);
+		return recordRepository.save(flatFeeBillingRecord);
 	}
 
 }

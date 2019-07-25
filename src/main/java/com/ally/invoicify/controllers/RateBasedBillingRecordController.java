@@ -3,6 +3,7 @@ package com.ally.invoicify.controllers;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +36,12 @@ public class RateBasedBillingRecordController {
 
 		return recordRepository.save(record);
 	}
+
+	@PutMapping("{id}")
+	public RateBasedBillingRecord update(@RequestBody RateBasedBillingRecord rateBasedBillingRecord, @PathVariable long id){
+		rateBasedBillingRecord.setId(id);
+		return recordRepository.save(rateBasedBillingRecord);
+	}
+
 
 }
