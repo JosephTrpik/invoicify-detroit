@@ -76,6 +76,11 @@ public class InvoiceController {
 	public List<Invoice> list() {
 		return invoiceRepository.findAll();
 	}
+
+	@GetMapping("{id}")
+	public Invoice getOne(@PathVariable Long id) {
+		return invoiceRepository.findOne(id);
+	}
 	
 }
 
