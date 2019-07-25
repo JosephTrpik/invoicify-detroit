@@ -31,7 +31,7 @@ public class NewPaymentController {
 	public NewPayment getOne(@PathVariable long id){
 		return newPaymentRepo.findOne(id);
 	}
-	
+
 	@PostMapping
 	public NewPayment create(@RequestBody NewPayment newPayment){
 		return newPaymentRepo.save(newPayment);
