@@ -38,6 +38,7 @@ public class SeedData {
 		recordRepository.save(new RateBasedBillingRecord(700, 8, "Palm reading", lomax, admin));
 		recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
 
+
 	}
 
 }
