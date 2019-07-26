@@ -45,7 +45,7 @@ public class NewPaymentController {
 
 
 	    invoice.setCurrentBalance(invoice.getCurrentBalance() - newPayment.getAmount());
-  if(invoice.getCurrentBalance() == 0) {
+  if(invoice.getCurrentBalance() <= 0) {
 			invoice.setPaidOn(now);
 		}
 		newPayment.setInvoice(invoice);
