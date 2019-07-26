@@ -9,9 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToOne;
+import javax.persistence.*;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.*;
+
 
 import com.ally.invoicify.models.InvoiceLineItem;
 
@@ -24,6 +29,8 @@ public abstract class BillingRecord {
 
 	@ManyToOne
 	private User createdBy;
+
+	@Column(insertable = false, updatable = false) private String dtype;
 	
 	private String description;
 
@@ -41,6 +48,7 @@ public abstract class BillingRecord {
 		this.description = description;
 		this.client = client;
 		this.setCreatedBy(createdBy);
+
 	}
 	
 	public abstract double getTotal();
@@ -56,6 +64,11 @@ public abstract class BillingRecord {
 	public User getCreatedBy() {
 		return createdBy;
 	}
+
+	public String getDtype(){
+		return dtype;
+	}
+
 
 	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;

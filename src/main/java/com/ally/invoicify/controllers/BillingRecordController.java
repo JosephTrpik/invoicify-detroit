@@ -27,17 +27,24 @@ public class BillingRecordController {
 		return recordRepository.findAll();
 	}
 
+
+	@GetMapping("/edit/{id}")
+	public BillingRecord getOne(@PathVariable long id){
+		return recordRepository.findOne(id);
+	}
+
+
 	@GetMapping("{id}")
     public List<BillingRecord> getRecordByCompanyId(@PathVariable Long id){
         return recordRepository.findByClientId(id);
 	}
-	
+
 	@DeleteMapping("{id}")
 	public BillingRecord update(@PathVariable long id){
 		BillingRecord original = recordRepository.findOne(id);
 		recordRepository.delete(original);
 		return original;
 	}
-	
+
 	
 }
