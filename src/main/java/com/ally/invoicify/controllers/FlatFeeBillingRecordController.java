@@ -37,9 +37,15 @@ public class FlatFeeBillingRecordController {
 		return recordRepository.save(record);
 	}
 
-	@PutMapping("{id}")
-	public FlatFeeBillingRecord update(@RequestBody FlatFeeBillingRecord flatFeeBillingRecord, @PathVariable long id){
+	@PutMapping("{clientId}/{id}")
+	public FlatFeeBillingRecord update(@RequestBody FlatFeeBillingRecord flatFeeBillingRecord, @PathVariable long clientId, @PathVariable long id, Authentication auth){
 		flatFeeBillingRecord.setId(id);
+		Company client = companyRepository.findOne(clientId);
+		flatFeeBillingRecord.setClient(client);
+		// flatFeeBillingRecord.setCreatedBy(flatFeeBillingRecord.getCreatedBy());
+		User user = (User) auth.getPrincipal();
+		flatFeeBillingRecord.setCreatedBy(user);
+
 		return recordRepository.save(flatFeeBillingRecord);
 	}
 

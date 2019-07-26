@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.DeleteMapping;;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import com.ally.invoicify.models.BillingRecord;
 import com.ally.invoicify.repositories.BillingRecordRepository;
@@ -27,11 +27,18 @@ public class BillingRecordController {
 		return recordRepository.findAll();
 	}
 
+
+	@GetMapping("/editt/{id}")
+	public BillingRecord getOne(@PathVariable long id){
+		return recordRepository.findOne(id);
+	}
+
+
 	@GetMapping("{id}")
     public List<BillingRecord> getRecordByCompanyId(@PathVariable Long id){
         return recordRepository.findByClientId(id);
 	}
-	
+
 	@DeleteMapping("{id}")
 	public BillingRecord update(@PathVariable long id){
 		BillingRecord original = recordRepository.findOne(id);
