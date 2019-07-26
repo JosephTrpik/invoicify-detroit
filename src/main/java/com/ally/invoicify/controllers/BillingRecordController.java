@@ -28,7 +28,7 @@ public class BillingRecordController {
 	}
 
 
-	@GetMapping("/editt/{id}")
+	@GetMapping("/edit/{id}")
 	public BillingRecord getOne(@PathVariable long id){
 		return recordRepository.findOne(id);
 	}
