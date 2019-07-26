@@ -22,8 +22,6 @@ public abstract class BillingRecord {
 	private User createdBy;
 
 	@Column(insertable = false, updatable = false) private String dtype;
-
-	private String dtype2;
 	
 	private String description;
 	
@@ -36,12 +34,12 @@ public abstract class BillingRecord {
 	
 	public BillingRecord() {}
 	
-	public BillingRecord(String description, Company client, User createdBy, String dtype2) {
+	public BillingRecord(String description, Company client, User createdBy) {
 		this();
 		this.description = description;
 		this.client = client;
 		this.setCreatedBy(createdBy);
-		this.dtype2 = dtype2;
+
 	}
 	
 	public abstract double getTotal();
@@ -62,9 +60,6 @@ public abstract class BillingRecord {
 		return dtype;
 	}
 
-	// public String getDtype2() {
-	// 	return dtype2;
-	// }
 
 	public void setCreatedBy(User createdBy) {
 		this.createdBy = createdBy;
