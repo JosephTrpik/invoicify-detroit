@@ -1,15 +1,24 @@
 package com.ally.invoicify.models;
 
 
+import java.util.List;
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToOne;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.*;
+
+
+import com.ally.invoicify.models.InvoiceLineItem;
 
 @Entity
 public abstract class BillingRecord {
@@ -26,10 +35,10 @@ public abstract class BillingRecord {
 	private String dtype2;
 	
 	private String description;
-	
-	@JsonManagedReference
-	@OneToOne(mappedBy="billingRecord")
-	private InvoiceLineItem lineItem;
+
+	@JsonManagedReference(value="thirdParent")
+	@OneToMany(mappedBy="billingRecord", cascade=CascadeType.ALL)
+	private List<InvoiceLineItem> lineItems;
 	
 	@ManyToOne
 	private Company client;
@@ -78,12 +87,12 @@ public abstract class BillingRecord {
 		this.description = description;
 	}
 
-	public InvoiceLineItem getLineItem() {
-		return lineItem;
+	public List<InvoiceLineItem> getLineItem() {
+		return this.lineItems;
 	}
 
 	public void setLineItem(InvoiceLineItem lineItem) {
-		this.lineItem = lineItem;
+		this.lineItems.add(lineItem);
 	}
 
 	public Company getClient() {

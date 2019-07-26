@@ -42,13 +42,14 @@ public class NewPaymentController {
         Date now = new Date(nowish);
 		Invoice invoice = invoiceRepo.getOne(invoiceId);
 
-		invoice.setBalance(invoice.getBalance()- newPayment.getAmount());
-		if(invoice.getBalance() == 0) {
+
+	    invoice.setCurrentBalance(invoice.getCurrentBalance() - newPayment.getAmount());
+  if(invoice.getCurrentBalance() <= 0) {
 			invoice.setPaidOn(now);
 		}
-
 		newPayment.setInvoice(invoice);
 
 		newPaymentRepo.save(newPayment);
-	}	
+	}
+
 }
