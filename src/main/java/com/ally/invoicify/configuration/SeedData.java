@@ -35,14 +35,67 @@ public class SeedData {
 		// long[] arrays = new long[]{13};
         // InvoiceView view = new InvoiceView("Test!@#",arrays);
         // invoiceRepository.save(view,ajax.getId());
-        Invoice invoice = invoiceRepository.save(new Invoice());
-        
-        invoice.setCreatedBy(admin);
-        invoice.setInvoiceDescription("TEST!@#");
-        
+		
+		for (int i=0; i <= 10; i++){
+			Invoice invoice = invoiceRepository.save(new Invoice());
+			String numToString = Integer.toString(i);
+			String desc = "Test"+numToString;
+			double currBal = 1.75 + i;
+			double initialBal = 1.85 + i;
+			Random  rnd;
+			long    ms;
+			
+			// Get a new random instance, seeded from the clock
+			rnd = new Random();
+			ms = 1451606400L + (Math.abs(rnd.nextLong()) % (3L * 365 * 24 * 60 * 60 * 1000));
+			System.out.println("ms value ===>"+ms);
+			long nowish = ms;
+			invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
+					initialBal, nowish);
+		}
+
+
+
+			//---------------------------------------------------
+		
+		// String desc = "Test2";
+		// double currBal = 1.75;
+		// double initialBal = 1.85;
+
+		// Random  rnd;
+		// // Date    dt;
+		// long    ms;
+		
+		// // Get a new random instance, seeded from the clock
+		// rnd = new Random();
+		
+		// // Get an Epoch value roughly between 1940 and 2010
+		// // -946771200000L = January 1, 1940
+		// // Add up to 70 years to it (using modulus on the next long)
+		// ms = 1451606400L + (Math.abs(rnd.nextLong()) % (3L * 365 * 24 * 60 * 60 * 1000));
+		// System.out.println("ms value ===>"+ms);
+		
+		// // Construct a date
+		// // dt = new Date(ms);
+
+
+		// // long nowish = Calendar.getInstance().getTimeInMillis();
+		// long nowish = ms;
+
+
+
+        // invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
+		// 		initialBal, nowish);
+    }
+
+	private void invoiceSeed(InvoiceLineItemRepository invoiceLineItemRepository, InvoiceRepository invoiceRepository,
+			User admin, Company ajax, BillingRecord billingRecord, Invoice invoice, String desc, double currBal,
+			double initialBal, long nowish) {
+		invoice.setCreatedBy(admin);
+        invoice.setInvoiceDescription(desc);
         InvoiceLineItem lineItem = new InvoiceLineItem();
         List<InvoiceLineItem> lineItems = new ArrayList<>();
-        long nowish = Calendar.getInstance().getTimeInMillis();
+        
         Date now = new Date(nowish);
         lineItem.setBillingRecord(billingRecord);
         lineItem.setCreatedBy(admin);
@@ -53,8 +106,8 @@ public class SeedData {
         invoice.setLineItems(lineItems);
         invoice.setCompany(ajax);
         invoice.setCreatedOn(now);
-        invoice.setCurrentBalance(1.75);
-        invoice.setInitialBalance(1.75);
+        invoice.setCurrentBalance(currBal);
+        invoice.setInitialBalance(initialBal);
         invoiceRepository.save(invoice);
-    }
+	}
 }
