@@ -109,7 +109,9 @@ public class SeedData {
         invoice.setCreatedOn(now);
         invoice.setCurrentBalance(currBal);
 		invoice.setInitialBalance(initialBal);
-		invoice.setPaidOn(paid);
+		if (now.getTime() % 2 == 0) {
+			invoice.setPaidOn(paid);
+		}
         invoiceRepository.save(invoice);
 	}
 }
