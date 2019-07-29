@@ -96,7 +96,8 @@ public class SeedData {
         InvoiceLineItem lineItem = new InvoiceLineItem();
         List<InvoiceLineItem> lineItems = new ArrayList<>();
         
-        Date now = new Date(nowish);
+		Date now = new Date(nowish);
+		Date paid = new Date (nowish + 9);
         lineItem.setBillingRecord(billingRecord);
         lineItem.setCreatedBy(admin);
         lineItem.setCreatedOn(now);
@@ -107,7 +108,8 @@ public class SeedData {
         invoice.setCompany(ajax);
         invoice.setCreatedOn(now);
         invoice.setCurrentBalance(currBal);
-        invoice.setInitialBalance(initialBal);
+		invoice.setInitialBalance(initialBal);
+		invoice.setPaidOn(paid);
         invoiceRepository.save(invoice);
 	}
 }
