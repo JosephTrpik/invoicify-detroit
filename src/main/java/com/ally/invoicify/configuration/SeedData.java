@@ -32,10 +32,7 @@ public class SeedData {
         recordRepository.save(new RateBasedBillingRecord(700, 8, "Palm reading", lomax, admin));
         recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
 		
-		// long[] arrays = new long[]{13};
-        // InvoiceView view = new InvoiceView("Test!@#",arrays);
-        // invoiceRepository.save(view,ajax.getId());
-		
+
 		for (int i=0; i <= 10; i++){
 			Invoice invoice = invoiceRepository.save(new Invoice());
 			String numToString = Integer.toString(i);
@@ -53,40 +50,7 @@ public class SeedData {
 			invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
 					initialBal, nowish);
 		}
-
-
-
-			//---------------------------------------------------
-		
-		// String desc = "Test2";
-		// double currBal = 1.75;
-		// double initialBal = 1.85;
-
-		// Random  rnd;
-		// // Date    dt;
-		// long    ms;
-		
-		// // Get a new random instance, seeded from the clock
-		// rnd = new Random();
-		
-		// // Get an Epoch value roughly between 1940 and 2010
-		// // -946771200000L = January 1, 1940
-		// // Add up to 70 years to it (using modulus on the next long)
-		// ms = 1451606400L + (Math.abs(rnd.nextLong()) % (3L * 365 * 24 * 60 * 60 * 1000));
-		// System.out.println("ms value ===>"+ms);
-		
-		// // Construct a date
-		// // dt = new Date(ms);
-
-
-		// // long nowish = Calendar.getInstance().getTimeInMillis();
-		// long nowish = ms;
-
-
-
-        // invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
-		// 		initialBal, nowish);
-    }
+}
 
 	private void invoiceSeed(InvoiceLineItemRepository invoiceLineItemRepository, InvoiceRepository invoiceRepository,
 			User admin, Company ajax, BillingRecord billingRecord, Invoice invoice, String desc, double currBal,
