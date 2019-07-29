@@ -1,20 +1,36 @@
-front end
+Setup
 
-git clone URL
+    create a postgres database:
+        from bash terminal: psql -U postgres
+        type your password in*
+        then enter: CREATE DATABASE invoicify;
 
-npm install
+            *if you forget your password: go into C:\Program Files\PostgreSQL\11\data\pg_hba.conf and replace all md5 with trust
 
-go into dataservices.ts change url to localhost:8080/api/ <--- dont forget trailing slash
+Frontend
 
-start postgres and make a database invoicify
+    git clone URL
 
+    npm install
 
-backend
+    go into dataservices.ts change url to localhost:8080/api/ <--- dont forget trailing slash
 
-git clone URL
+    to run program: npm start
 
-go into src/main/resources/application.properties and make user = postgres
+Backend
 
-go into C:\Program Files\PostgreSQL\11\data\pg_hba.conf and make all md5 to trust
+    git clone URL
 
-comment out .anyRequest().authenticated() from seruirtyconfig.java
+    go into src/main/resources/application.properties and make user = postgres
+
+    to use postman:
+        comment out .anyRequest().authenticated() from seruirtyconfig.java
+
+    to run program: mvn spring-boot:run
+
+Misc
+    if you can't boot due to port in use:
+        open up a command prompt with admin rights
+        type: netstat -ao
+        find the port in use and note its PID
+        type: tskill "PID"
