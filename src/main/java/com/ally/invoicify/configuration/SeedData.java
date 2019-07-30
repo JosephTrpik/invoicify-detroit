@@ -60,12 +60,7 @@ public class SeedData {
 			invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
 					initialBal, nowish);
         }
-        Invoice invoice = invoiceRepository.save(new Invoice());
-        invoice.setCompany(lomax);
-        
-        invoice.setInitialBalance(10);
-        invoice.setCurrentBalance(10);
-        invoiceRepository.save(invoice);
+       
 }
 
 	private void invoiceSeed(InvoiceLineItemRepository invoiceLineItemRepository, InvoiceRepository invoiceRepository,
