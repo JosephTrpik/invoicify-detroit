@@ -14,6 +14,8 @@ import com.ally.invoicify.repositories.UserRepository;
 import com.ally.invoicify.models.*;
 import java.util.*;
 import java.sql.Date;
+
+
 @Configuration
 public class SeedData {
     public SeedData(BillingRecordRepository recordRepository, CompanyRepository companyRepository,
@@ -44,9 +46,10 @@ public class SeedData {
 			
 			// Get a new random instance, seeded from the clock
 			rnd = new Random();
-			ms = 1451606400L + (Math.abs(rnd.nextLong()) % (3L * 365 * 24 * 60 * 60 * 1000));
+			ms = 1483228800L + (Math.abs(rnd.nextLong()) % (2L * 365 * 24 * 60 * 60));
 			System.out.println("ms value ===>"+ms);
 			long nowish = ms;
+			
 			invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
 					initialBal, nowish);
 		}
@@ -61,7 +64,7 @@ public class SeedData {
         List<InvoiceLineItem> lineItems = new ArrayList<>();
         
 		Date now = new Date(nowish);
-		Date paid = new Date (nowish + 9);
+		Date paid = new Date (nowish + 900000000);
         lineItem.setBillingRecord(billingRecord);
         lineItem.setCreatedBy(admin);
         lineItem.setCreatedOn(now);
