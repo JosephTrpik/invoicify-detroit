@@ -16,6 +16,9 @@ public interface BillingRecordRepository extends JpaRepository<BillingRecord, Lo
 
 	List<BillingRecord> findByClientId(Long clientId);
 
+	@Query("select  count(dtype), dtype from BillingRecord n group by dtype")
+    List<BillingRecord> findByRecordType();
+
 	// @Async
 	// @Query("SELECT dtype FROM BillingRecord where id = :id") 
     // BillingRecord findTest(@Param("id") Long id);

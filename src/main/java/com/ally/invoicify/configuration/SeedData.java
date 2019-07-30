@@ -10,6 +10,7 @@ import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 import com.ally.invoicify.repositories.InvoiceLineItemRepository;
 import com.ally.invoicify.repositories.InvoiceRepository;
+import com.ally.invoicify.repositories.NewPaymentRepository;
 import com.ally.invoicify.repositories.UserRepository;
 import com.ally.invoicify.models.*;
 import java.util.*;
@@ -17,7 +18,7 @@ import java.sql.Date;
 @Configuration
 public class SeedData {
     public SeedData(BillingRecordRepository recordRepository, CompanyRepository companyRepository,
-            UserRepository userRepository, InvoiceLineItemRepository invoiceLineItemRepository , InvoiceRepository invoiceRepository , PasswordEncoder encoder) {
+            UserRepository userRepository, InvoiceLineItemRepository invoiceLineItemRepository , InvoiceRepository invoiceRepository , NewPaymentRepository newPaymentRepository , PasswordEncoder encoder) {
         User admin = userRepository.save(new User("admin", encoder.encode("admin")));
         Company ajax = companyRepository.save(new Company("AJAX Ltd."));
         Company lomax = companyRepository.save(new Company("Lomax Brothers, LLC"));
@@ -58,6 +59,21 @@ public class SeedData {
         invoice.setInitialBalance(10);
         invoice.setCurrentBalance(10);
         invoiceRepository.save(invoice);
+
+
+        NewPayment newPayment = newPaymentRepository.save(new NewPayment());
+        newPayment.setMethod("credit");
+        newPaymentRepository.save(newPayment);
+
+
+        NewPayment newPayment1 = newPaymentRepository.save(new NewPayment());
+        newPayment1.setMethod("cash");
+        newPaymentRepository.save(newPayment1); 
+
+        
+
+
+
 }
 
 	private void invoiceSeed(InvoiceLineItemRepository invoiceLineItemRepository, InvoiceRepository invoiceRepository,

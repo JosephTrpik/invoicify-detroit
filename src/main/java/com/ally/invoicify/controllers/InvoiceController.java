@@ -116,10 +116,7 @@ public class InvoiceController {
 		return invoiceRepository.findByPaidOnNull();
 	}
 
-	@GetMapping("/avg")
-	public List<Invoice> findavg() {
-		return invoiceRepository.test();
-	}
+
 
   @GetMapping("{id}")
 	public Invoice getOne(@PathVariable Long id) {
