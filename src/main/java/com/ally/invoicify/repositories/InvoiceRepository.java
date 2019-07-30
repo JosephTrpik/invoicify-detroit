@@ -22,8 +22,32 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     List<Invoice> findAverageCurrentBalanceByCompany();
 
 
-    @Query("select paidOn - createdOn from Invoice i")
-    List<Invoice> test();
+    @Query("select paidOn - createdOn, invoiceDescription from Invoice i where paidOn != null")
+    List<Invoice> findAverageTimeToPay();
+
+    @Query("select sum(initialBalance) from Invoice i")
+    List<Invoice> findSumInitalBalance();
+
+
+    @Query("select sum(abs(currentBalance-initialBalance)) from Invoice i")
+    List<Invoice> findTotalOutstandingAmount();
+
+    @Query("select count(id) from Invoice i WHERE currentBalance > 0")
+    List<Invoice> findTotalOutstandingInvoices();
+
+    @Query("select count(id) from Invoice i WHERE currentBalance <= 0")
+    List<Invoice> findTotalPaidInvoices();
+
+    
+
+    
+
+    
+
+    
+
+    
+    
 
 
     

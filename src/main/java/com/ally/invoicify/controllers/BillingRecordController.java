@@ -33,6 +33,9 @@ public class BillingRecordController {
 		return recordRepository.findOne(id);
 	}
 
+	
+
+
 
 	@GetMapping("{id}")
     public List<BillingRecord> getRecordByCompanyId(@PathVariable Long id){

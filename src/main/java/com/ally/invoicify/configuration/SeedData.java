@@ -10,6 +10,7 @@ import com.ally.invoicify.repositories.BillingRecordRepository;
 import com.ally.invoicify.repositories.CompanyRepository;
 import com.ally.invoicify.repositories.InvoiceLineItemRepository;
 import com.ally.invoicify.repositories.InvoiceRepository;
+import com.ally.invoicify.repositories.NewPaymentRepository;
 import com.ally.invoicify.repositories.UserRepository;
 import com.ally.invoicify.models.*;
 import java.util.*;
@@ -21,7 +22,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Configuration
 public class SeedData {
     public SeedData(BillingRecordRepository recordRepository, CompanyRepository companyRepository,
-            UserRepository userRepository, InvoiceLineItemRepository invoiceLineItemRepository , InvoiceRepository invoiceRepository , PasswordEncoder encoder) {
+            UserRepository userRepository, InvoiceLineItemRepository invoiceLineItemRepository , InvoiceRepository invoiceRepository , NewPaymentRepository newPaymentRepository , PasswordEncoder encoder) {
         User admin = userRepository.save(new User("admin", encoder.encode("admin")));
         Company ajax = companyRepository.save(new Company("AJAX Ltd."));
         Company lomax = companyRepository.save(new Company("Lomax Brothers, LLC"));
@@ -54,9 +55,9 @@ public class SeedData {
 			ms = now - (Math.abs(rnd.nextLong()) % (3L * 30 * 24 * 60 * 60 * 1000));
 
 			System.out.println("ms value ===>"+ms);
-      
-			long nowish = ms;
-			
+            long nowish = ms;
+            
+
 			invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
 					initialBal, nowish);
         }
