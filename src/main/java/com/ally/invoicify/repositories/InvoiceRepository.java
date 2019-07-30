@@ -22,7 +22,7 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     List<Invoice> findAverageCurrentBalanceByCompany();
 
 
-    @Query("select paidOn - createdOn, invoiceDescription from Invoice i")
+    @Query("select paidOn - createdOn, invoiceDescription from Invoice i where paidOn != null")
     List<Invoice> findAverageTimeToPay();
 
     @Query("select sum(initialBalance) from Invoice i")
