@@ -4,6 +4,7 @@ import java.util.List;
 import java.sql.Date;
 import java.util.Calendar;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
 
-import com.ally.invoicify.models.Invoice;
+import com.ally.invoicify.exceptions.UnknownException;
+
+import com.ally.invoicify.models.Invoice; 
 import com.ally.invoicify.models.NewPayment;
 import com.ally.invoicify.repositories.NewPaymentRepository;
 import com.ally.invoicify.repositories.InvoiceRepository;;
@@ -37,17 +41,27 @@ public class NewPaymentController {
 	}
 	
 	@PostMapping("{invoiceId}")
-	public NewPayment create(@RequestBody NewPayment newPayment, @PathVariable Long invoiceId){
+	public Object create(@RequestBody NewPayment newPayment, @PathVariable Long invoiceId){
 		long nowish = Calendar.getInstance().getTimeInMillis();
 		Date now = new Date(nowish);
 		Invoice invoice = invoiceRepo.getOne(invoiceId);
 
 	    invoice.setCurrentBalance(invoice.getCurrentBalance() - newPayment.getAmount());
-  if(invoice.getCurrentBalance() <= 0) {
-			invoice.setPaidOn(now);
-		}
 
-		return newPaymentRepo.save(newPayment);
+		if(invoice.getCurrentBalance() == 0) {
+			invoice.setPaidOn(now);
+
+			
+		}
+	if (invoice.getCurrentBalance() < 0){
+		throw new UnknownException("Balance Error");
+
+	}
+
+	return newPaymentRepo.save(newPayment);
+	
+
+		
 	}
 
 }
