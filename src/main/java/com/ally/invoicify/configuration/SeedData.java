@@ -46,15 +46,24 @@ public class SeedData {
 			rnd = new Random();
 			ms = 1451606400L + (Math.abs(rnd.nextLong()) % (3L * 365 * 24 * 60 * 60 * 1000));
 			System.out.println("ms value ===>"+ms);
-			long nowish = ms;
+            long nowish = ms;
+            
+
 			invoiceSeed(invoiceLineItemRepository, invoiceRepository, admin, ajax, billingRecord, invoice, desc, currBal,
 					initialBal, nowish);
-		}
+        }
+        Invoice invoice = invoiceRepository.save(new Invoice());
+        invoice.setCompany(lomax);
+        
+        invoice.setInitialBalance(10);
+        invoice.setCurrentBalance(10);
+        invoiceRepository.save(invoice);
 }
 
 	private void invoiceSeed(InvoiceLineItemRepository invoiceLineItemRepository, InvoiceRepository invoiceRepository,
 			User admin, Company ajax, BillingRecord billingRecord, Invoice invoice, String desc, double currBal,
 			double initialBal, long nowish) {
+
 		invoice.setCreatedBy(admin);
         invoice.setInvoiceDescription(desc);
         InvoiceLineItem lineItem = new InvoiceLineItem();
