@@ -116,8 +116,6 @@ public class InvoiceController {
 		return invoiceRepository.findByPaidOnNull();
 	}
 
-
-
   @GetMapping("{id}")
 	public Invoice getOne(@PathVariable Long id) {
 		return invoiceRepository.findOne(id);

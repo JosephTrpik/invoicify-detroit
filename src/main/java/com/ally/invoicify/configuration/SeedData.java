@@ -15,6 +15,10 @@ import com.ally.invoicify.repositories.UserRepository;
 import com.ally.invoicify.models.*;
 import java.util.*;
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.concurrent.ThreadLocalRandom;
+
 @Configuration
 public class SeedData {
     public SeedData(BillingRecordRepository recordRepository, CompanyRepository companyRepository,
@@ -34,7 +38,7 @@ public class SeedData {
         recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
 		
 
-		for (int i=0; i <= 10; i++){
+		for (int i=0; i <= 30; i++){
 			Invoice invoice = invoiceRepository.save(new Invoice());
 			String numToString = Integer.toString(i);
 			String desc = "Test"+numToString;
@@ -45,7 +49,11 @@ public class SeedData {
 			
 			// Get a new random instance, seeded from the clock
 			rnd = new Random();
-			ms = 1451606400L + (Math.abs(rnd.nextLong()) % (3L * 365 * 24 * 60 * 60 * 1000));
+			long now = Instant.now().toEpochMilli();
+			System.out.println("Today's epoch time in ms --->"+now);
+
+			ms = now - (Math.abs(rnd.nextLong()) % (3L * 30 * 24 * 60 * 60 * 1000));
+
 			System.out.println("ms value ===>"+ms);
             long nowish = ms;
             
@@ -59,21 +67,6 @@ public class SeedData {
         invoice.setInitialBalance(10);
         invoice.setCurrentBalance(10);
         invoiceRepository.save(invoice);
-
-
-        NewPayment newPayment = newPaymentRepository.save(new NewPayment());
-        newPayment.setMethod("credit");
-        newPaymentRepository.save(newPayment);
-
-
-        NewPayment newPayment1 = newPaymentRepository.save(new NewPayment());
-        newPayment1.setMethod("cash");
-        newPaymentRepository.save(newPayment1); 
-
-        
-
-
-
 }
 
 	private void invoiceSeed(InvoiceLineItemRepository invoiceLineItemRepository, InvoiceRepository invoiceRepository,
@@ -86,7 +79,8 @@ public class SeedData {
         List<InvoiceLineItem> lineItems = new ArrayList<>();
         
 		Date now = new Date(nowish);
-		Date paid = new Date (nowish + 9);
+		System.out.println(now);
+		Date paid = new Date (nowish + 900000000);
         lineItem.setBillingRecord(billingRecord);
         lineItem.setCreatedBy(admin);
         lineItem.setCreatedOn(now);
