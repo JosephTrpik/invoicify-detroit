@@ -14,7 +14,9 @@ import com.ally.invoicify.repositories.UserRepository;
 import com.ally.invoicify.models.*;
 import java.util.*;
 import java.sql.Date;
-
+import java.time.Instant;
+import java.time.LocalDate;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Configuration
 public class SeedData {
@@ -35,7 +37,7 @@ public class SeedData {
         recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
 		
 
-		for (int i=0; i <= 10; i++){
+		for (int i=0; i <= 30; i++){
 			Invoice invoice = invoiceRepository.save(new Invoice());
 			String numToString = Integer.toString(i);
 			String desc = "Test"+numToString;
@@ -46,7 +48,11 @@ public class SeedData {
 			
 			// Get a new random instance, seeded from the clock
 			rnd = new Random();
-			ms = 1483228800L + (Math.abs(rnd.nextLong()) % (2L * 365 * 24 * 60 * 60));
+			long now = Instant.now().toEpochMilli();
+			System.out.println("Today's epoch time in ms --->"+now);
+
+			ms = now - (Math.abs(rnd.nextLong()) % (3L * 30 * 24 * 60 * 60 * 1000));
+
 			System.out.println("ms value ===>"+ms);
 			long nowish = ms;
 			
@@ -64,6 +70,7 @@ public class SeedData {
         List<InvoiceLineItem> lineItems = new ArrayList<>();
         
 		Date now = new Date(nowish);
+		System.out.println(now);
 		Date paid = new Date (nowish + 900000000);
         lineItem.setBillingRecord(billingRecord);
         lineItem.setCreatedBy(admin);
