@@ -13,7 +13,7 @@ public class NewPayment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private Long amount;
+	private Double amount;
 
 	private String method;
 
@@ -22,7 +22,7 @@ public class NewPayment {
 	public NewPayment() {
 	}
 
-	public NewPayment(Long amount, String method, Long invoiceId) {
+	public NewPayment(Double amount, String method, Long invoiceId) {
 		this();
 		this.amount = amount;
 		this.method = method;
@@ -36,11 +36,11 @@ public class NewPayment {
 		this.id = id;
 	}
 
-	public Long getAmount() {
+	public Double getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(Long amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
