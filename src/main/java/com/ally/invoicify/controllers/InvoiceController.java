@@ -107,6 +107,15 @@ public class InvoiceController {
 		return invoiceRepository.findAll();
 	}
   
+	@GetMapping("/paid")
+	public  List<Invoice> findPaid() {
+		return invoiceRepository.findByPaidOnNotNull();
+	}
+	@GetMapping("/unpaid")
+	public  List<Invoice> findUnpaid() {
+		return invoiceRepository.findByPaidOnNull();
+	}
+
   @GetMapping("{id}")
 	public Invoice getOne(@PathVariable Long id) {
 		return invoiceRepository.findOne(id);
