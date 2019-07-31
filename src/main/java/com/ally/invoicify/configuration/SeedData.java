@@ -111,7 +111,7 @@ public class SeedData {
         
         NewPayment test1 = newPaymentRepository.save(new NewPayment(1.0,"Credit",invoice.getId()));
         
-        NewPayment test2 = newPaymentRepository.save(new NewPayment(1.0,"Venmmo",invoice.getId()));
+        NewPayment test2 = newPaymentRepository.save(new NewPayment(1.0,"Venmo",invoice.getId()));
         
 
 	}
