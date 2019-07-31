@@ -1,4 +1,13 @@
+Invoicify
+
+    The purpose of this web application is to provide an invoice management tool for internal use.
+
 Setup
+
+    Clone both the frontend and backend projects from the github repo into your local machine's file system.
+    
+    https://github.com/peternsilva/invoicify-detroit - backend
+    https://github.com/peternsilva/invoicify-detroit-fe - frontend
 
     create a postgres database:
         from bash terminal: psql -U postgres
@@ -15,7 +24,6 @@ Frontend
 
     go into dataservices.ts change url to localhost:8080/api/ <--- dont forget trailing slash
 
-    to run program: npm start
 
 Backend
 
@@ -24,9 +32,16 @@ Backend
     go into src/main/resources/application.properties and make user = postgres
 
     to use postman:
-        comment out .anyRequest().authenticated() from seruirtyconfig.java
+        comment out .anyRequest().authenticated() from securityconfig.java
 
-    to run program: mvn spring-boot:run
+    
+Run
+
+    Start the frontend - npm start
+    Start the frontend - mvn spring-boot:run
+    
+    Use a web browser and go to http://localhost:4200 to access the application running on your local machine.
+
 
 Misc
     if you can't boot due to port in use:
