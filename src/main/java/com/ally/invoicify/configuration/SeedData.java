@@ -38,12 +38,12 @@ public class SeedData {
         recordRepository.save(new RateBasedBillingRecord(1.57, 25, "Show shining", lomax, admin));
 		
 
-		for (int i=0; i <= 30; i++){
+		for (int i=0; i <= 10; i++){
 			Invoice invoice = invoiceRepository.save(new Invoice());
-			String numToString = Integer.toString(i);
-			String desc = "Test"+numToString;
-			double currBal = 1.85 + i;
-			double initialBal = 1.85 + i;
+			String[] descriptions = {"Account open", "Toaster", "Car insurance", "Yearly Service Charge", "Legal Charges", "Paper", "Thick Paper", "Even Thicker Paper", "Lumberjacking" };
+			String desc = descriptions[i % descriptions.length];
+			double currBal = 4.35 + i;
+			double initialBal = 4.35 + i;
 			Random  rnd;
 			long    ms;
 			
@@ -78,10 +78,6 @@ public class SeedData {
 			double initialBal, long nowish, NewPaymentRepository newPaymentRepository) {
         
          
-
-
-
-
 		invoice.setCreatedBy(admin);
         invoice.setInvoiceDescription(desc);
         InvoiceLineItem lineItem = new InvoiceLineItem();
@@ -105,13 +101,21 @@ public class SeedData {
 			invoice.setPaidOn(paid);
 		}
         invoiceRepository.save(invoice);
+		System.out.println("ID +++++++++ " + invoice.getId());
+		if (invoice.getCreatedOn().getTime() % 3 == 0) {
+			NewPayment test = newPaymentRepository.save(new NewPayment(Math.floor(invoice.getInitialBalance()/3),"Cash",invoice.getId()));
 
+		}
+		else if (invoice.getCreatedOn().getTime() % 3 == 1) {
+			NewPayment test = newPaymentRepository.save(new NewPayment(Math.floor(invoice.getInitialBalance()/3),"Credit",invoice.getId()));
 
-        NewPayment test = newPaymentRepository.save(new NewPayment(1.0,"Cash",invoice.getId()));
+		}
+		else if (invoice.getCreatedOn().getTime() % 3 == 2) {
+			NewPayment test = newPaymentRepository.save(new NewPayment(Math.floor(invoice.getInitialBalance()/3),"Venmo",invoice.getId()));
+		}
+        // NewPayment test1 = newPaymentRepository.save(new NewPayment(1.0,"Credit",invoice.getId()));
         
-        NewPayment test1 = newPaymentRepository.save(new NewPayment(1.0,"Credit",invoice.getId()));
-        
-        NewPayment test2 = newPaymentRepository.save(new NewPayment(1.0,"Venmo",invoice.getId()));
+        // NewPayment test2 = newPaymentRepository.save(new NewPayment(1.0,"Venmo",invoice.getId()));
         
 
 	}
