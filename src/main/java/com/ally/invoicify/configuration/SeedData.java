@@ -40,7 +40,7 @@ public class SeedData {
 
 		for (int i=0; i <= 10; i++){
 			Invoice invoice = invoiceRepository.save(new Invoice());
-			String[] descriptions = {"Account open", "Toaster", "Car insurance", "Yearly Service Charge", "Legal Charges", "Paper", "Thick Paper", "Even Thicker Paper", "Lumberjacking" };
+			String[] descriptions = {"Account open", "Toaster", "Car insurance", "Monthly Service Charge", "Legal Charges", "Paper", "Thick Paper", "Even Thicker Paper", "Lumberjacking" };
 			String desc = descriptions[i % descriptions.length];
 			double currBal = 4.35 + i;
 			double initialBal = 4.35 + i;
