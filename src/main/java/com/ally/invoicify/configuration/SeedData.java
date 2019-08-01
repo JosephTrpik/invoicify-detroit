@@ -42,7 +42,7 @@ public class SeedData {
 			Invoice invoice = invoiceRepository.save(new Invoice());
 			String numToString = Integer.toString(i);
 			String desc = "Test"+numToString;
-			double currBal = 1.75 + i;
+			double currBal = 1.85 + i;
 			double initialBal = 1.85 + i;
 			Random  rnd;
 			long    ms;
